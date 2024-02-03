@@ -3,6 +3,7 @@
 ## JSearch API from rapidapi
 
 ## To-Do CheckList
+- [x] Fetch Data and Display
 - [ ] Implement the Search Filters
 - [ ] Add Job Details Page
 - [ ] Finish the Job Card Component. 
