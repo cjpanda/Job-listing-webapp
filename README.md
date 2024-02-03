@@ -1,4 +1,4 @@
-# React + Vite Job Listing Project (Not finished Yet)
+# React + Vite Job Listing Project (Still working on it)
 ## This Project is not finished yet,
 ## JSearch API from rapidapi
 
