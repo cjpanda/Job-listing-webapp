@@ -3,34 +3,12 @@ import Hero from "./components/Hero";
 import SearchResults from "./components/SearchResults";
 import SearchFilters from "./components/SearchFilters";
 import Searchbar from "./components/Searchbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import dummyData from "./services/dummyData";
 import { fetchJobs } from "./services/jobService";
 
 function App() {
-  const [jobResults, setJobResults] = useState([]);
-
-  const fetchData = async (query) => {
-    try {
-      const results = await fetchJobs(query);
-      console.log("Raw API Response:", results);
-
-      if (results.status === "OK") {
-        const relevantJobs = results.data || [];
-        console.log("Relevant Jobs:", relevantJobs);
-        setJobResults(relevantJobs);
-      } else {
-        console.error("Error response from server:", results.status);
-      }
-    } catch (error) {
-      console.error("Error in fetchData:", error);
-    }
-  };
-
-  useEffect(() => {
-    // Fetch initial data without a query
-    const defaultQuery = "React";
-    fetchData(defaultQuery);
-  }, []); // Empty dependency array ensures the effect runs only once on mount
+  const [jobResults, setJobResults] = useState(dummyData);
 
   const handleSearch = async (query) => {
     try {
@@ -45,13 +23,52 @@ function App() {
         const relevantJobs = results.data || [];
         console.log("Relevant Jobs:", relevantJobs);
 
-        // Set the filtered results in state
+        // Set the job results in state
         setJobResults(relevantJobs);
       } else {
         console.error("Error response from server:", results.status);
       }
     } catch (error) {
       console.error("Error in handleSearch:", error);
+    }
+  };
+
+  // Still Workig on it
+
+  const handleFilterChange = async (query, location) => {
+    try {
+      if (!query) {
+        // Query is undefined or null, handle this case appropriately
+        return;
+      }
+
+      const [jobTitle, locationFilter] = query.split(" in ");
+      if (!locationFilter && !location) {
+        // Location is not present in the query or provided separately, handle this case appropriately
+        return;
+      }
+
+      // Extract city and country from either the location in the query or the separate location parameter
+      const [city, country] = locationFilter
+        ? locationFilter.split(", ")
+        : location.split(", ");
+
+      // Fetch jobs with filters
+      const results = await fetchJobs(jobTitle, city, country);
+
+      console.log("Raw API Response:", results);
+
+      if (results.status === "OK") {
+        const relevantJobs = results.data || [];
+        console.log("Relevant Jobs:", relevantJobs);
+
+        // Set the job results in state
+        setJobResults(relevantJobs);
+      } else {
+        console.error("Error response from server:", results.status);
+      }
+    } catch (error) {
+      console.error("Error in handleFilterChange:", error);
     }
   };
 
@@ -75,7 +92,7 @@ function App() {
 
           {/* SearchFilters */}
           <div className="col-span-1 mt-10">
-            <SearchFilters />
+            <SearchFilters onFilterChange={handleFilterChange} />
           </div>
         </div>
       </div>

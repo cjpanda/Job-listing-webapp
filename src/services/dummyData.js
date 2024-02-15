@@ -1,0 +1,53 @@
+const dummyData = [
+  {
+    job_posted_at_datetime_utc: "2022-02-02T12:34:56Z",
+    employer_name: "Company A",
+    job_title: "Frontend Developer",
+    job_city: "Berlin",
+    job_country: "Germany",
+    job_is_remote: true,
+    job_employment_type: "Fulltime",
+    job_salary: 50000,
+    job_required_experience: "Entry Level",
+    job_apply_is_direct: true,
+  },
+  {
+    job_posted_at_datetime_utc: "2022-02-02T12:34:56Z",
+    employer_name: "Company B",
+    job_title: "Fullstack Developer",
+    job_city: "New York",
+    job_country: "United States",
+    job_is_remote: true,
+    job_employment_type: "Contractor",
+    job_salary: 50000,
+    job_required_experience: "Entry Level",
+    job_apply_is_direct: false,
+  },
+  {
+    job_posted_at_datetime_utc: "2022-02-02T12:34:56Z",
+    employer_name: "Company C",
+    job_title: "React Developer",
+    job_city: "Vancouver",
+    job_country: "Canada",
+    job_is_remote: false,
+    job_employment_type: "PartTime",
+    job_salary: 120000,
+    job_required_experience: "Senior Level",
+    job_apply_is_direct: false,
+  },
+  {
+    job_posted_at_datetime_utc: "2022-02-02T12:34:56Z",
+    employer_name: "Company D",
+    job_title: "Junior Web Developer",
+    job_city: "Lagos",
+    job_country: "Nigeria",
+    job_is_remote: true,
+    job_employment_type: "Intern",
+    job_salary: 90000,
+    job_required_experience: "Internship",
+    job_apply_is_direct: false,
+  },
+  // Add more dummy data as needed
+];
+
+export default dummyData;

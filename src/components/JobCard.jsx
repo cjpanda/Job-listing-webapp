@@ -22,6 +22,12 @@ const calculateTimeDifference = (timestamp) => {
 };
 
 const JobCard = ({ job }) => {
+  const handleApplyNow = () => {
+    if (job.job_apply_link) {
+      window.open(job.job_apply_link, "_blank");
+    }
+  };
+
   return (
     <div className="bg-white p-5 w-full mt-10 rounded-md shadow">
       <div className="flex flex-col justify-center mb-5">
@@ -41,8 +47,8 @@ const JobCard = ({ job }) => {
         </p>
       </div>
 
-      <div className="flex gap-10 text-secondary">
-        <p className="flex items-center gap-2">
+      <div className="flex lg:flex-row flex-col gap-5 text-secondary">
+        <p className="flex items-center gap-2 ">
           <WiTime4 className="text-2xl " />
           {job.job_employment_type || "Fulltime"}
         </p>
@@ -53,9 +59,25 @@ const JobCard = ({ job }) => {
             : "Salary not specified"}
         </p>
         <p className="flex items-center gap-2 ">
-          <GoBriefcase className="text-2xl " />
+          <GoBriefcase className="text-xl " />
           Experience not specified
         </p>
+      </div>
+      <div className="lg:text-right ">
+        <div className="text-left text-light pt-2 pb-5 text-sm">
+          {job.job_apply_is_direct ? "Easy Apply" : "No Easy Apply"}{" "}
+        </div>
+        <div className=" pb-3 flex gap-4 lg:justify-end justify-center">
+          <button className="bg-white border border-primary hover:opacity-80 font-semibold text-sm p-3 px-5  text-secondary rounded-xl">
+            See details
+          </button>
+          <button
+            onClick={handleApplyNow}
+            className="bg-primary hover:opacity-80 font-semibold text-sm p-3  px-5 text-white rounded-xl"
+          >
+            Apply Now
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -63,6 +85,7 @@ const JobCard = ({ job }) => {
 
 JobCard.propTypes = {
   job: PropTypes.shape({
+    job_id: PropTypes.string,
     job_posted_at_datetime_utc: PropTypes.string,
     employer_name: PropTypes.string,
     job_title: PropTypes.string,
@@ -71,6 +94,8 @@ JobCard.propTypes = {
     job_is_remote: PropTypes.bool,
     job_employment_type: PropTypes.string,
     job_salary: PropTypes.number,
+    job_apply_link: PropTypes.string,
+    job_apply_is_direct: PropTypes.bool,
   }),
 };
 

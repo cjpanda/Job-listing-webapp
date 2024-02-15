@@ -1,10 +1,11 @@
 const API_URL = "https://jsearch.p.rapidapi.com/search";
 
-const fetchJobs = async (jobTitle, city, country) => {
+const fetchJobs = async (jobTitle, city, country, filters) => {
   const params = new URLSearchParams({
     query: `${jobTitle} in ${city}, ${country}`,
     page: "1",
     num_pages: "1",
+    filters: filters,
   });
 
   const headers = {
