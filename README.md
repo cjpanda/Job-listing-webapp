@@ -11,4 +11,6 @@
 - [ ] Add Job Details Page
 - [ ] Test the application thoroughly.
 
+![joblisting](https://github.com/cjpanda/Job-listing-webapp/assets/107156444/ec624877-9d17-4512-a020-b8bfa6c17b8f)
+
 UI Design Template from Figma : [TECHWORLD](https://www.figma.com/community/file/1136323492614596040/job-portal-website-ui?searchSessionId=ls6mpx1f-q5zogw08l1).
