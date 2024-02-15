@@ -1,17 +1,18 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { fetchJobs } from "../services/jobService";
+// import { fetchJobs } from "../services/jobService";
 
 // Still working on it
 
 const SearchFilters = ({ onFilterChange }) => {
-  const [selectedOption, setSelectedOption] = useState("");
   const [checkedOption, setCheckedOption] = useState("");
   const [location, setLocation] = useState("");
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-    applyFilters();
+  const clearFiltersButton = () => {
+    setCheckedOption("");
+    setLocation("");
+    // const defaultQuery = "React";
+    // fetchJobs(defaultQuery); // Fetch initial data again
   };
 
   const handleCheckboxChange = (e) => {
@@ -26,46 +27,22 @@ const SearchFilters = ({ onFilterChange }) => {
   };
 
   const applyFilters = () => {
-    const query = `${selectedOption} ${checkedOption}`;
+    const query = `${checkedOption} in ${location}`.trim();
 
     // Call the parent component function to fetch job listings with filters
     if (onFilterChange) {
-      onFilterChange(query, location);
+      onFilterChange(query);
     }
   };
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      <div className="bg-white w-full p-5 mt-8 shadow rounded-md text-secondary">
-        <p className="font-medium">Sort By</p>
-        <div className=" flex  gap-5 w-full">
-          <label className="mb-2 flex">
-            <input
-              type="radio"
-              value="salary"
-              checked={selectedOption === "salary"}
-              onChange={(e) => handleOptionChange(e)}
-              className="mr-2"
-            />
-            Salary
-          </label>
-          <label className="mb-2 flex">
-            <input
-              type="radio"
-              value="date"
-              checked={selectedOption === "date"}
-              onChange={(e) => handleOptionChange(e)}
-              className="mr-2"
-            />
-            Date Posted
-          </label>
-        </div>
-      </div>
-
-      <div className="bg-white w-full p-5 mt-8 shadow rounded-md text-secondary">
+      <div className="bg-white w-full p-5  shadow rounded-md text-secondary">
         <div className="flex justify-between pb-5">
           <p className="font-medium">Filters</p>
-          <p className="text-sm">clear all</p>
+          <button onClick={clearFiltersButton} className="text-sm">
+            clear all
+          </button>
         </div>
 
         <div>
@@ -126,7 +103,10 @@ const SearchFilters = ({ onFilterChange }) => {
             placeholder="Enter city or country"
             className="border border-slate-300 rounded-md p-2 outline-none"
           />
-          <button className="p-3 hover:opacity-90 bg-primary text-white rounded-lg mt-5 font-bold">
+          <button
+            onClick={applyFilters}
+            className="p-3 hover:opacity-90 bg-primary text-white rounded-lg mt-5 font-bold"
+          >
             Search
           </button>
         </div>

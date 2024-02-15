@@ -11,7 +11,7 @@ const SearchResults = ({ jobResults }) => {
       {displayData.length > 0 ? (
         displayData.map((job, index) => <JobCard key={index} job={job} />)
       ) : (
-        <p>No Jobs matches your search </p>
+        <div className="notification">No jobs match your search criteria.</div>
       )}
     </div>
   );
@@ -33,7 +33,7 @@ SearchResults.propTypes = {
       job_posted_at_datetime_utc: PropTypes.string,
       job_apply_is_direct: PropTypes.bool,
     })
-  ),
+  ).isRequired,
 };
 
 export default SearchResults;
