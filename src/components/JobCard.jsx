@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { WiTime4 } from "react-icons/wi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { GoBriefcase } from "react-icons/go";
+import thumbnail from "../assets/glumos.png";
 
 // Function to calculate the time difference
 const calculateTimeDifference = (timestamp) => {
@@ -30,21 +31,32 @@ const JobCard = ({ job }) => {
 
   return (
     <div className="bg-white p-5 w-full mt-10 rounded-md shadow">
-      <div className="flex flex-col justify-center mb-5">
-        <p className="text-right text-[12px] text-light">
-          {/* Format the timestamp as needed */}
-          Posted {calculateTimeDifference(job.job_posted_at_datetime_utc)}
-        </p>
-        <p className="text-light text-sm font-[500] ">
-          {job.employer_name || "Company Name"}
-        </p>
-        <p className="text-xl font-semibold text-primary py-1 ">
-          {job.job_title || "Frontend Developer"}
-        </p>
-        <p className="text-[13px] text-light font-medium">
-          {job.job_city || "Location City"}, {job.job_country} |{" "}
-          {job.job_is_remote ? "Remote work available" : "Not remote"}
-        </p>
+      <p className="text-right text-[12px] text-light">
+        {/* Format the timestamp as needed */}
+        Posted {calculateTimeDifference(job.job_posted_at_datetime_utc)}
+      </p>
+      <div className="flex items-center gap-3 pb-2">
+        <div className="w-20 ">
+          <div>
+            <img
+              src={job.employer_logo || thumbnail}
+              alt="Employer Logo"
+              className="rounded-md object-contain"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center mb-5">
+          <p className="text-light text-sm font-[500] ">
+            {job.employer_name || "Company Name"}
+          </p>
+          <p className="text-xl font-semibold text-primary py-1 ">
+            {job.job_title || "Frontend Developer"}
+          </p>
+          <p className="text-[13px] text-light font-medium">
+            {job.job_city || "Location City"}, {job.job_country} |{" "}
+            {job.job_is_remote ? "Remote work available" : "Not remote"}
+          </p>
+        </div>
       </div>
 
       <div className="flex lg:flex-row flex-col gap-5 text-secondary">
@@ -60,7 +72,9 @@ const JobCard = ({ job }) => {
         </p>
         <p className="flex items-center gap-2 ">
           <GoBriefcase className="text-xl " />
-          Experience not specified
+          {job.job_required_experience !== null
+            ? job.job_required_experience
+            : "Experience not specified"}
         </p>
       </div>
       <div className="lg:text-right ">
@@ -96,6 +110,8 @@ JobCard.propTypes = {
     job_salary: PropTypes.number,
     job_apply_link: PropTypes.string,
     job_apply_is_direct: PropTypes.bool,
+    job_required_experience: PropTypes.string,
+    employer_logo: PropTypes.string,
   }),
 };
 
