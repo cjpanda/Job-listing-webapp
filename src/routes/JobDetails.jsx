@@ -13,6 +13,7 @@ const JobDetails = () => {
 
   useEffect(() => {
     const fetchDetails = async () => {
+      window.scrollTo(0, 0);
       try {
         // Check if the job details are already in the dummy data
         const existingJob = dummyData.find((job) => job.job_id === job_id);
@@ -68,7 +69,7 @@ const JobDetails = () => {
               <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-12 w-12"></div>{" "}
             </div>
           ) : (
-            <p className="whitespace-pre-wrap text-secondary pb-10">
+            <p className="whitespace-pre-wrap lg:w-[50%] text-secondary pb-10">
               {jobDetails?.job_description}
             </p>
           )}
