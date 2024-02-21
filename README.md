@@ -1,9 +1,9 @@
 # React + Vite Job Listing Project (Still working on it)
 ## This Project is not finished yet,
 ## JSearch API from rapidapi
-## Live Demo(Unfinished) : [Demo](https://job-listing-webapp-eight.vercel.app/)
+## Live Demo: [Demo](https://job-listing-webapp-eight.vercel.app/)
 
-## To-Do CheckList
+## To-Do CheckList 
 - [x] Fetch Data and Display
 - [x] Finish the Job Card Component (Apply button, See more button.) 
 - [x] Add Job Details Page
