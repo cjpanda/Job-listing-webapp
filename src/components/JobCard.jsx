@@ -3,6 +3,7 @@ import { WiTime4 } from "react-icons/wi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { GoBriefcase } from "react-icons/go";
 import thumbnail from "../assets/glumos.png";
+import { Link } from "react-router-dom";
 
 // Function to calculate the time difference
 const calculateTimeDifference = (timestamp) => {
@@ -82,9 +83,12 @@ const JobCard = ({ job }) => {
           {job.job_apply_is_direct ? "Easy Apply" : "No Easy Apply"}{" "}
         </div>
         <div className=" pb-3 flex gap-4 lg:justify-end justify-center">
-          <button className="bg-white border border-primary hover:opacity-80 font-semibold text-sm p-3 px-5  text-secondary rounded-xl">
+          <Link
+            to={`/job-details/${job.job_id}`}
+            className="bg-white border border-primary hover:opacity-80 font-semibold text-sm p-3 px-5  text-secondary rounded-xl"
+          >
             See details
-          </button>
+          </Link>
           <button
             onClick={handleApplyNow}
             className="bg-primary hover:opacity-80 font-semibold text-sm p-3  px-5 text-white rounded-xl"

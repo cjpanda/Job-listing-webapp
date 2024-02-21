@@ -20,10 +20,12 @@ const Searchbar = ({ onSearch }) => {
         }
       } else {
         console.error("Error response from server:", jobResults.status);
+        window.alert("Error from Api Server");
         // Handle error, update state, or perform other actions accordingly
       }
     } catch (error) {
       console.error("Error in handleSearch:", error);
+      window.alert("Error from Api Server");
       // Handle error, update state, or perform other actions accordingly
     }
   };

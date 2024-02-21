@@ -24,6 +24,7 @@ SearchResults.propTypes = {
       job_title: PropTypes.string,
       job_description: PropTypes.string,
       employer_name: PropTypes.string,
+      employer_logo: PropTypes.string,
       job_employment_type: PropTypes.string,
       job_apply_link: PropTypes.string,
       job_city: PropTypes.string,
