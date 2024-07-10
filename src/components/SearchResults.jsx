@@ -3,7 +3,6 @@ import JobCard from "./JobCard";
 import dummyData from "../services/dummyData";
 
 const SearchResults = ({ jobResults }) => {
-  // Use dummyData if jobResults is empty
   const displayData = jobResults.length > 0 ? jobResults : dummyData;
 
   return (

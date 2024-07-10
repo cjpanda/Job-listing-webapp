@@ -30,6 +30,16 @@ const JobCard = ({ job }) => {
     }
   };
 
+  const formatExperience = (experience) => {
+    if (typeof experience === "object" && experience !== null) {
+      return `No Experience Required: ${experience.no_experience_required}, 
+              Required Experience in Months: ${experience.required_experience_in_months}, 
+              Experience Mentioned: ${experience.experience_mentioned}, 
+              Experience Preferred: ${experience.experience_preferred}`;
+    }
+    return experience || "Experience not specified";
+  };
+
   return (
     <div className="bg-white p-5 w-full mt-10 rounded-md shadow">
       <p className="text-right text-[12px] text-light">
@@ -73,9 +83,7 @@ const JobCard = ({ job }) => {
         </p>
         <p className="flex items-center gap-2 ">
           <GoBriefcase className="text-xl " />
-          {job.job_required_experience !== null
-            ? job.job_required_experience
-            : "Experience not specified"}
+          {formatExperience(job.job_required_experience)}
         </p>
       </div>
       <div className="lg:text-right ">
@@ -114,7 +122,15 @@ JobCard.propTypes = {
     job_salary: PropTypes.number,
     job_apply_link: PropTypes.string,
     job_apply_is_direct: PropTypes.bool,
-    job_required_experience: PropTypes.string,
+    job_required_experience: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        no_experience_required: PropTypes.bool,
+        required_experience_in_months: PropTypes.number,
+        experience_mentioned: PropTypes.bool,
+        experience_preferred: PropTypes.bool,
+      }),
+    ]),
     employer_logo: PropTypes.string,
   }),
 };
